@@ -1,0 +1,88 @@
+@use "/src/utils/styles/media-screen.scss";
+@use "/src/utils/styles/colors.scss";
+
+.NavbarRoot {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50;
+  height: 70px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: colors.$slate-900;
+  gap: 20px;
+
+  .navbarContent {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    width: 100%;
+    @include media-screen.breakpoint-lg {
+      width: 850px;
+    }
+    @include media-screen.breakpoint-xl {
+      width: 1000px;
+    }
+    transition: 0.2s all ease-in-out;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    > div:nth-child(1) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: 700;
+      background-color: colors.$slate-100;
+      color: colors.$slate-900;
+      margin: 0;
+      width: 40px;
+      height: 40px;
+    }
+    > p:nth-child(2) {
+      font-size: 20px;
+      font-weight: 500;
+      color: colors.$slate-300;
+      margin: 0;
+      min-width: max-content;
+    }
+  }
+  .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: fit-content;
+    > div {
+      display: flex;
+      border-radius: 5px;
+      gap: 10px;
+      width: fit-content;
+      .link {
+        text-decoration: none;
+        .menuItem {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 15px;
+          font-weight: 400;
+          color: colors.$slate-400;
+          border-bottom: 1px solid transparent;
+          padding: 5px 10px;
+          border-radius: 10px;
+          &.active {
+            color: colors.$slate-100;
+            font-weight: 600;
+          }
+          transition: 0.2s all ease-in-out;
+        }
+      }
+    }
+  }
+}

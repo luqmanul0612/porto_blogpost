@@ -1,0 +1,16 @@
+@use "/src/utils/styles/colors.scss";
+
+.RadioGroup-root {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  > label {
+    font-size: 14px;
+    font-weight: 600;
+    color: colors.$slate-700;
+  }
+  .RadioGroup-content {
+    display: flex;
+    gap: 20px;
+  }
+}

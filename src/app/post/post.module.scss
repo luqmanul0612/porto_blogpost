@@ -1,0 +1,159 @@
+@use "/src/utils/styles/media-screen.scss";
+@use "/src/utils/styles/colors.scss";
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 10px;
+  margin-top: 80px;
+  .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    @include media-screen.breakpoint-lg {
+      width: 850px;
+    }
+    @include media-screen.breakpoint-xl {
+      width: 1000px;
+    }
+    .contentCard {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid colors.$slate-200;
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 40px;
+      .post {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .title {
+          margin: 0;
+          font-size: 30px;
+          font-weight: 700;
+          color: colors.$slate-700;
+          line-height: 1.3;
+        }
+        .author {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          .img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 45px;
+            min-height: 45px;
+            width: 45px;
+            min-width: 45px;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: 700;
+            color: colors.$slate-100;
+            background-color: colors.$slate-600;
+          }
+          .name {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            > p:nth-child(1) {
+              font-size: 14px;
+              font-weight: 400;
+              margin: 0;
+              color: colors.$slate-400;
+              line-height: 1.1;
+            }
+            > p:nth-child(2) {
+              font-size: 14px;
+              font-weight: 600;
+              margin: 0;
+              color: colors.$slate-600;
+              line-height: 1.1;
+            }
+          }
+        }
+        .postBody {
+          padding: 20px 0;
+          min-height: 200px;
+          > p {
+            font-size: 16px;
+            font-weight: 400;
+            margin: 0;
+            color: colors.$slate-600;
+          }
+        }
+        .comments {
+          display: flex;
+          flex-direction: column;
+          .title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+            color: colors.$slate-600;
+          }
+          .noComment {
+            padding: 20px 10px;
+            font-size: 15px;
+            font-weight: 500;
+            margin: 0;
+            color: colors.$slate-500;
+          }
+          .commentContent {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            gap: 20px;
+            .commentItem {
+              display: flex;
+              flex-direction: column;
+              border-bottom: 1px solid colors.$slate-200;
+              justify-content: center;
+              .commentUser {
+                display: flex;
+                gap: 10px;
+                .commentImg {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  height: 35px;
+                  min-height: 35px;
+                  width: 35px;
+                  min-width: 35px;
+                  border-radius: 5px;
+                  font-size: 15px;
+                  font-weight: 700;
+                  color: colors.$slate-100;
+                  background-color: colors.$slate-600;
+                }
+                .userInfo {
+                  display: flex;
+                  flex-direction: column;
+                  > p:nth-child(1) {
+                    font-size: 14px;
+                    font-weight: 600;
+                    margin: 0;
+                    color: colors.$slate-700;
+                  }
+                  > p:nth-child(2) {
+                    font-size: 13px;
+                    font-weight: 400;
+                    margin: 0;
+                    color: colors.$slate-500;
+                  }
+                }
+                .commentBody {
+                  font-size: 15px;
+                  font-weight: 500;
+                  margin: 0;
+                  color: colors.$slate-700;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

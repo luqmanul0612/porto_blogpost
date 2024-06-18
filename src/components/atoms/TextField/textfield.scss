@@ -1,0 +1,177 @@
+@use "/src/utils/styles/colors.scss";
+
+.TextField-root {
+  display: flex;
+  flex-direction: column;
+  > label {
+    font-size: 14px;
+    font-weight: 600;
+    color: colors.$slate-700;
+    width: max-content;
+    margin-bottom: 5px;
+  }
+  &.error > label {
+    color: colors.$red-500;
+  }
+  &.disabled > label {
+    color: colors.$slate-300;
+  }
+  .TextField-input-wrapper {
+    display: flex;
+    position: relative;
+    width: 100%;
+    > input {
+      font-size: 15px;
+      font-weight: 400;
+      width: 100%;
+      color: colors.$slate-700;
+      outline: none;
+      border: 1.5px solid #dee8f5;
+      border-radius: 8px;
+      padding: 0 10px;
+      resize: none;
+      padding-right: 35px;
+      height: 46px;
+      &::placeholder {
+        color: colors.$slate-500;
+      }
+      &:focus {
+        border: 1.5px solid colors.$slate-500;
+        box-shadow: 0 0 0 2px #1f3e643e;
+      }
+      &.error {
+        color: colors.$red-500;
+        border: 1.5px solid colors.$red-500;
+        box-shadow: 0 0 0 2px #ff53533e;
+        &::placeholder {
+          color: colors.$red-500;
+        }
+      }
+      &:disabled {
+        color: colors.$slate-300;
+        background-color: colors.$slate-100;
+        border: 1.5px solid colors.$slate-300;
+        box-shadow: none;
+        &::placeholder {
+          color: colors.$slate-300;
+        }
+      }
+      &::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #289672;
+        width: 5px;
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-track-piece:start {
+        background-color: #f0f3fb;
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-track-piece:end {
+        background-color: #f0f3fb;
+        border-radius: 10px;
+      }
+      transition: 0.2s all ease-in-out;
+    }
+    .close-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      outline: none;
+      position: absolute;
+      opacity: 1;
+      padding: 3px;
+      pointer-events: unset;
+      border-radius: 100%;
+      cursor: pointer;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: colors.$red-200;
+      border: 2px solid transparent;
+      > svg path {
+        stroke: colors.$red-700 !important;
+      }
+      &:hover {
+        filter: brightness(0.9);
+      }
+      transition: 0.2s filter ease-in-out, 0.2s opacity ease-in-out;
+    }
+    > input:placeholder-shown + .close-icon {
+      opacity: 0;
+      pointer-events: none;
+    }
+    > input:disabled + .close-icon {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .start-icon,
+    .end-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 46px;
+      position: absolute;
+      .password-toggle {
+        margin: 0;
+        background-color: transparent;
+        border: 0;
+        outline: none;
+        padding: 0;
+        border-radius: 8px;
+        height: 35px;
+        width: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        > svg path {
+          stroke: colors.$slate-500;
+        }
+        &:hover {
+          background-color: colors.$slate-300;
+        }
+        &:disabled {
+          background-color: colors.$slate-200;
+          > svg,
+          > svg path {
+            stroke: colors.$slate-300;
+          }
+        }
+        transition: 0.2s background-color ease-in-out;
+      }
+    }
+    .start-icon {
+      left: 2px;
+      & ~ input {
+        padding-left: 42px;
+      }
+    }
+    .end-icon {
+      right: 2px;
+      & ~ .close-icon {
+        right: 42px;
+      }
+      & ~ input {
+        padding-right: 67px;
+      }
+    }
+  }
+  .helpertext {
+    font-size: 13px;
+    font-weight: 400;
+    color: colors.$slate-300;
+    margin: 0;
+    margin-top: 3px;
+  }
+  &.error > .helpertext {
+    color: colors.$red-500;
+  }
+  &.disabled > .helpertext {
+    color: colors.$slate-500;
+  }
+}

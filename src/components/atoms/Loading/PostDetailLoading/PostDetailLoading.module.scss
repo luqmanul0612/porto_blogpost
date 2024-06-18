@@ -1,0 +1,51 @@
+@use "/src/utils/styles/colors.scss";
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    > div:nth-child(1) {
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      min-height: 32px;
+      width: 100%;
+      border-radius: 5px;
+      background-color: colors.$slate-100;
+    }
+    > div:nth-child(2) {
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      min-height: 32px;
+      width: 40%;
+      border-radius: 5px;
+      background-color: colors.$slate-100;
+    }
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    > div {
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      min-height: 20px;
+      width: 100%;
+      border-radius: 5px;
+      background-color: colors.$slate-100;
+    }
+    > div:nth-last-child(1) {
+      width: 75%;
+    }
+  }
+  .comments {
+    margin-top: 110px;
+  }
+}

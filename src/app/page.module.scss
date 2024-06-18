@@ -1,0 +1,38 @@
+@use "/src/utils/styles/colors.scss";
+@use "/src/utils/styles/media-screen.scss";
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+  margin-top: 90px;
+  align-items: center;
+  padding: 0 10px;
+  padding-bottom: 40px;
+  .contentWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    @include media-screen.breakpoint-lg {
+      width: 850px;
+    }
+    @include media-screen.breakpoint-xl {
+      width: 1000px;
+    }
+    transition: 0.2s all ease-in-out;
+    .cardWrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 10px;
+      transition: 0.2s all ease-in-out;
+    }
+    .pagination {
+      display: flex;
+      width: 100%;
+      box-sizing: border-box;
+      justify-content: center;
+      padding: 40px 0;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@use "/src/utils/styles/colors.scss";
+
+.main {
+  display: flex;
+  gap: 10px;
+  .paginationItem {
+    min-height: 35px;
+    min-width: 35px;
+    position: relative;
+    overflow: hidden;
+    background-color: colors.$slate-100;
+    border-radius: 5px;
+  }
+}

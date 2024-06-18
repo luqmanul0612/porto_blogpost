@@ -1,94 +1,73 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import { useRouter, useSearchParams } from "next/navigation";
+import styles from "./page.module.scss";
+import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getPosts } from "@/utils/services";
+import PostCard from "@/components/organisms/PostCard";
+import PostLoading from "@/components/atoms/Loading/PostLoading";
+import Pagination from "@/components/molecules/Pagination";
 
 export default function Home() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const queryPage = searchParams.get("page");
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setPage(queryPage ? Number(queryPage) : 1);
+  }, [queryPage]);
+
+  const posts = useQuery({
+    queryKey: ["posts", page],
+    queryFn: () => getPosts({ variables: { page, take: 20 } }),
+  });
+
+  useEffect(() => {
+    if (posts.data) setCount(posts?.data?.numberOfPages ?? 0);
+  }, [posts.data]);
+
+  const onChangePage = (page: number) => {
+    const params = new URLSearchParams();
+    params.set("page", String(page));
+    router.push(`/?${params.toString()}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setPage(page);
+  };
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      <div className={styles.contentWrapper}>
+        <div className={styles.pagination}>
+          <Pagination
+            value={page}
+            onChange={(page) => onChangePage(page)}
+            count={count}
+            isLoading={posts.isLoading && !count}
+          />
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        {posts.isLoading && (
+          <div className={styles.cardWrapper}>
+            <PostLoading />
+          </div>
+        )}
+        {!posts.isLoading && (
+          <div className={styles.cardWrapper}>
+            {posts.data?.result?.map((post) => (
+              <PostCard post={post} key={post.id} />
+            ))}
+          </div>
+        )}
+        <div className={styles.pagination}>
+          <Pagination
+            value={page}
+            onChange={(page) => onChangePage(page)}
+            count={count}
+            isLoading={posts.isLoading && !count}
+          />
+        </div>
       </div>
     </main>
   );

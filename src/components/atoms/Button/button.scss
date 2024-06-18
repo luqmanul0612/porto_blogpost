@@ -1,0 +1,136 @@
+@use "/src/utils/styles/colors.scss";
+
+.Button-root {
+  border: none;
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0px 6px 6px colors.$sky-500 10;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 5px 15.83px;
+  &.fullWidth {
+    width: 100%;
+  }
+  &.size-default {
+    width: fit-content;
+    min-height: 46px;
+  }
+  &.size-small {
+    width: fit-content;
+    min-height: 40px;
+  }
+  &.solid {
+    background-color: colors.$slate-500;
+    color: white;
+    z-index: 0;
+    &::before,
+    &::after {
+      position: absolute;
+      content: "";
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 10px;
+      transition: opacity 0.2s ease-in-out;
+    }
+    &::before {
+      background-image: linear-gradient(
+        to right,
+        colors.$slate-600,
+        colors.$slate-400
+      );
+    }
+    &::after {
+      background-image: linear-gradient(
+        to right,
+        colors.$slate-800,
+        colors.$slate-500
+      );
+    }
+    &::before {
+      z-index: -2;
+    }
+    &::after {
+      opacity: 0;
+      z-index: -1;
+    }
+    &:hover {
+      background-color: colors.$sky-600;
+      &::after {
+        opacity: 1;
+      }
+    }
+    &:disabled {
+      background-color: colors.$slate-300;
+      color: colors.$slate-50;
+      &::after,
+      &::before {
+        opacity: 0;
+      }
+      cursor: not-allowed;
+    }
+  }
+
+  &.soft {
+    background-color: colors.$slate-300;
+    color: colors.$slate-700;
+    
+    &:hover {
+      background-color: colors.$slate-400;
+      color: colors.$slate-700;
+    }
+    &:disabled {
+      background-color: colors.$slate-300;
+      color: colors.$slate-50;
+      cursor: not-allowed;
+    }
+  }
+
+  &.outline {
+    background-color: white;
+    border: 1px solid colors.$sky-500;
+    color: colors.$sky-500;
+    box-shadow: 0px 3px 10px 3px #f2403833;
+
+    &:hover {
+      background-color: colors.$slate-500;
+    }
+    &:disabled {
+      background-color: colors.$slate-300;
+      border: 1px solid colors.$slate-400;
+      box-shadow: 0px 3px 10px 3px #535e7848;
+      color: colors.$slate-400;
+      cursor: not-allowed;
+    }
+  }
+  &.surface {
+    background-color: colors.$slate-300;
+    border: 1px solid colors.$slate-300;
+    color: colors.$slate-300;
+    box-shadow: 0px 3px 10px 3px #f2403833;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+    &:disabled {
+      background-color: colors.$slate-300;
+      border: 1px solid colors.$slate-300;
+      color: colors.$slate-300;
+      box-shadow: 0px 3px 10px 3px #535e7848;
+      cursor: not-allowed;
+    }
+  }
+
+  .Button-start-icon,
+  .Button-end-icon {
+    display: flex;
+  }
+  transition: 0.2s ease all;
+}

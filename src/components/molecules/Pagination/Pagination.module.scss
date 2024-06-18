@@ -1,0 +1,64 @@
+@use "/src/utils/styles/colors.scss";
+@use "/src/utils/styles/media-screen.scss";
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 10px 10px;
+  width: 100%;  
+  box-sizing: border-box;
+  border: 1px solid colors.$slate-300;
+  .pagination {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    @include media-screen.breakpoint-md {
+      gap: 10px;
+    }
+    .separator {
+      margin: 0 5px;
+      display: flex;
+      height: 100%;
+      align-items: flex-end;
+      font: 14px;
+      font-size: 500;
+      color: colors.$slate-500;
+    }
+    .paginationBtn {
+      display: flex;
+      min-height: 32px;
+      min-width: 32px;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      border: none;
+      background-color: colors.$slate-300;
+      color: colors.$slate-600;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      @include media-screen.breakpoint-md {
+        font-size: 14px;
+        min-height: 35px;
+        min-width: 35px;
+      }
+      &.active {
+        background-color: colors.$slate-700;
+        color: colors.$slate-100;
+      }
+      &:disabled {
+        cursor: not-allowed;
+        background-color: colors.$slate-200;
+        color: colors.$slate-50;
+      }
+      transition: 0.2s all ease-in-out;
+    }
+  }
+}
