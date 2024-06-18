@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as Dialog from "@radix-ui/react-dialog";
 import React, { useLayoutEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
