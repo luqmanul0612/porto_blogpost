@@ -30,4 +30,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 -- or --
 
-Open [https://blog-post-coral.vercel.app](https://) to view deployment web.
+Open [https://](https://) to view deployment web.

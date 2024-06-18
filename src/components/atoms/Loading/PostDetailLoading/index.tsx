@@ -1,4 +1,3 @@
-import * as Separator from "@radix-ui/react-separator";
 import Shimmer from "../Shimmer";
 import styles from "./PostDetailLoading.module.scss";
 import { PostUserLoading } from "../PostLoading";
