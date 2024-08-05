@@ -1,7 +1,3 @@
-Frontend Enginer Challenge by Muhammad Luqmanul Hakim
-
---
-
 This project was build with Next js 14
 
 ## Getting Started
@@ -27,7 +23,3 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the development server.
-
--- or --
-
-Open [https://frontend-blogpost-7xjo32f54-muhammad-luqmanul-hakims-projects.vercel.app](https://frontend-blogpost-7xjo32f54-muhammad-luqmanul-hakims-projects.vercel.app) to view deployment web.
